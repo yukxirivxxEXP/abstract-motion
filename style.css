@@ -1,0 +1,159 @@
+body {
+    margin: 0;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    position: relative; /* Для управления z-index */
+    background-color: black; /* Черный фон */
+  }
+  
+  .typography {
+    z-index: 1;
+    position: relative;
+    text-align: center;
+  }
+  
+  .word {
+    display: inline-block;
+    margin: 10px;
+    position: relative; /* Для позиционирования букв */
+  }
+  
+  .letter {
+    display: inline-block;
+    font-family: 'Arial Black', sans-serif;
+    font-size: 100px;
+    color: white;
+    text-shadow: 
+      0 0 5px rgba(255, 0, 0, 0.8), 
+      0 0 10px rgba(0, 255, 0, 0.8), 
+      0 0 15px rgba(0, 0, 255, 0.8); /* Тень текста RGB для эффекта глитч */
+    opacity: 0;
+    transform: translateY(50px) scale(0.8) rotate(-30deg);
+    animation: animateLetter 1.5s forwards ease-in-out, glitch 1s infinite, wave 2s infinite; /* Добавить анимации */
+  }
+  
+  .word:nth-child(1) .letter {
+    animation-delay: calc(var(--delay) * 0.1s);
+  }
+  
+  .word:nth-child(2) .letter {
+    animation-delay: calc(var(--delay) * 0.2s);
+  }
+  
+  /* Контейнер форм */
+  .shapes {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Для разрешения взаимодействий с текстом */
+  }
+  
+  /* Квадратные формы */
+  .shape {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background-color: rgba(255, 255, 255, 0.5); /* Белый цвет с небольшой непрозрачностью */
+    filter: blur(10px); /* Гауссово размытие */
+    animation: rotate 10s linear infinite; /* Анимация вращения */
+  }
+  
+  /* Фоновое изображение */
+  .background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('path_to_your_image.jpg') no-repeat center center; /* Замените на ваше изображение */
+    background-size: cover; /* Настроить размер фона */
+    filter: blur(5px); /* Размытие фона */
+    z-index: 0; /* Поместить позади текста */
+  }
+  
+  /* Анимации */
+  @keyframes animateLetter {
+    0% {
+      opacity: 0;
+      transform: translateY(50px) scale(0.8) rotate(-30deg);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0) scale(1) rotate(0);
+    }
+  }
+  
+  @keyframes rotate {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+  @keyframes wave {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    25% {
+      transform: translateY(-10px);
+    }
+    50% {
+      transform: translateY(10px);
+    }
+    75% {
+      transform: translateY(-5px);
+    }
+  }
+  
+  @keyframes glitch {
+    0% { 
+      text-shadow: 
+        1px 0 rgba(255, 0, 0, 0.5), 
+        -1px 0 rgba(0, 255, 0, 0.5),
+        2px 0 rgba(0, 0, 255, 0.5);
+      transform: translate(0) scale(1);
+    }
+    20% { 
+      text-shadow: 
+        1px 0 rgba(255, 0, 0, 0.5), 
+        -1px 0 rgba(0, 255, 0, 0.5),
+        2px 0 rgba(0, 0, 255, 0.5);
+      transform: translate(-1px, 2px) scale(1.1); /* Увеличить эффект глитч и масштаб */
+    }
+    40% { 
+      text-shadow: 
+        1px 0 rgba(255, 0, 0, 0.5), 
+        -1px 0 rgba(0, 255, 0, 0.5),
+        2px 0 rgba(0, 0, 255, 0.5);
+      transform: translate(1px, -1px) scale(1.1); /* Настроить деформацию волны */
+    }
+    60% { 
+      text-shadow: 
+        1px 0 rgba(255, 0, 0, 0.5), 
+        -1px 0 rgba(0, 255, 0, 0.5),
+        2px 0 rgba(0, 0, 255, 0.5);
+      transform: translate(-1px, 2px) scale(1.1); 
+    }
+    80% { 
+      text-shadow: 
+        1px 0 rgba(255, 0, 0, 0.5), 
+        -1px 0 rgba(0, 255, 0, 0.5),
+        2px 0 rgba(0, 0, 255, 0.5);
+      transform: translate(1px, -1px) scale(1.1); 
+    }
+    100% { 
+      text-shadow: 
+        1px 0 rgba(255, 0, 0, 0.5), 
+        -1px 0 rgba(0, 255, 0, 0.5),
+        2px 0 rgba(0, 0, 255, 0.5);
+      transform: translate(0) scale(1); 
+    }
+  }
+  
